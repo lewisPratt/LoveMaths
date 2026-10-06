@@ -7,18 +7,32 @@ document.addEventListener("DOMContentLoaded", function () {
                 alert("you clicked Submit")
             } else {
                 let gametype = this.getAttribute("data-type");
-                alert(`You clicked ${gametype}`)
+                runGame(gametype)
             }
         })
     }
+    runGame("addition");
 })
 
 /**
  * the main game loop. creates 2 random numbers between 1 and 24
  */
-function runGame() {
+function runGame(gametype) {
     let num1 = Math.floor(Math.random() * 25) + 1
     let num2 = Math.floor(Math.random() * 25) + 1
+
+    if (gametype === "addition") {
+        displayAdditionQuestion(num1, num2);
+    } else if (gametype === "subtract") {
+        displaySubtractQuestion(num1, num2);
+    }else if (gametype === "multiply") {
+        displayMultiplyQuestion(num1, num2);
+    }else if (gametype === "divsion") {
+        displayDivisionQuestion(num1, num2);
+    } else {
+        alert(`Unkown game type: ${gametype}`);
+        throw `unknown game type: ${gametype}. Aborting`;
+    }
 }
 
 function checkAnswer() {
@@ -37,14 +51,25 @@ function incrementWrongAnswer() {
 
 }
 
-function displayAdditionQuestion() {
-
+function displayAdditionQuestion(operand1, operand2) {
+    document.getElementById("operand1").textContent = operand1
+    document.getElementById("operand2").textContent = operand2
+    document.getElementById("operator").textContent = "+"
 }
 
-function displaySubtractQuestion() {
-
+function displaySubtractQuestion(operand1,operand2) {
+ document.getElementById("operand1").textContent = operand1
+    document.getElementById("operand2").textContent = operand2
+    document.getElementById("operator").textContent = "-"
 }
 
-function displayMultiplyQuestion() {
-
+function displayMultiplyQuestion(operand1,operand2) {
+ document.getElementById("operand1").textContent = operand1
+    document.getElementById("operand2").textContent = operand2
+    document.getElementById("operator").textContent = "X"
+}
+function displayDivisionQuestion(operand1,operand2) {
+ document.getElementById("operand1").textContent = operand1
+    document.getElementById("operand2").textContent = operand2
+    document.getElementById("operator").textContent = "/"
 }
